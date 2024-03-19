@@ -1,0 +1,49 @@
+
+            <h2>Add a New Movie</h2>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="title">Movie Title:</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter movie title" value="{{ movie.title }}">
+                </div> <br>
+                <div class="form-group">
+                    <label for="desc">Description:</label>
+                    <textarea class="form-control" id="desc" name="desc" rows="3" placeholder="Enter the description">{{ movie.desc }}</textarea>
+                </div><br>
+                <div class="form-group">
+                    <label for="release_date">Release Date:</label>
+                    <input type="date" class="form-control" id="release_date" name="release_date" value="{{ movie.release_date }}">
+                </div><br>
+                <div class="form-group">
+                    <label for="actors">Actors:</label>
+                    <input type="text" class="form-control" id="actors" name="actors" placeholder="Enter actors" value="{{ movie.actors }}">
+                </div><br>
+                <div class="form-group">
+                    <label for="category">Category:</label>
+                    <input type="text" class="form-control" id="category" name="category" placeholder="Enter category" value="{{ movie.category }}">
+                </div><br>
+                <div class="form-group">
+                    <label for="imdb_rating">IMDb Rating:</label>
+                    <input type="number" class="form-control" id="imdb_rating" name="imdb_rating" step="0.1" placeholder="Enter IMDb rating" value="{{ movie.imdb_rating }}">
+                    </div> <br>
+                <div class="form-group">
+                    <label for="language">Language:</label>
+                    <select class="form-control" id="language" name="language">
+                        <option value="malayalam">Malayalam</option>
+                        <option value="hindi">Hindi</option>
+                        <option value="english">English</option>
+                    </select>
+                </div> <br>
+                <div class="form-group">
+                    <label for="youtube_trailer_link">YouTube Trailer Link:</label>
+                    <input type="url" class="form-control" id="youtube_trailer_link" name="youtube_trailer_link" placeholder="Enter YouTube trailer link" value="{{ movie.youtube_trailer_link }}">
+                </div><br>
+                <div class="form-group">
+                    <label for="poster">Poster Image:</label>
+                    <input type="file" class="form-control-file" id="poster" name="poster">
+                </div><br>
+                <button type="submit" class="btn btn-primary">Submit</button><br>
+
+            <br>
+            <a class="btn btn-secondary" href="{% url 'Movieapp:index' %}">Back to Home</a>
+   </form>

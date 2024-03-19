@@ -1,0 +1,7 @@
+<h1>Genre List</h1>
+    <ul>
+        {% for genre in genres %}
+<!--       <li><a href="{% url 'Movieapp:genre_list' %}">Genre</a></li>-->
+            <li><a href="{% url 'genre_detail' genre.id %}">{{ genre.name }}</a></li>
+        {% endfor %}
+    </ul>

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block body %}
+
+<!--    <h1>Welcome to the Movie Hub </h1>-->
+
+    {% if user.is_authenticated %}
+        <!-- If user is authenticated, display user's name and logout link -->
+        <p>Welcome, {{ user.username }}!</p>
+<!--        <a href="{% url 'Movieapp:sign_out' %}">Logout</a>-->
+    {% else %}
+<!--        &lt;!&ndash; If user is not authenticated, display sign up and sign in links &ndash;&gt;-->
+<!--        <a href="{% url 'Movieapp:sign_up' %}">Sign Up</a><br>-->
+<!--        <a href="{% url 'Movieapp:sign_in' %}">Sign In</a>-->
+    {% endif %}
+
+    <!-- Display movies added by the current user -->
+    <h4>Movie Hub is a place where you can add all your favourite movies and its details.Try now....</h4><br>
+
+<!--   index page style                -->
+
+<div class="container">
+    <div class="row">
+        {% for i in movie_list %}
+            <div class="col-md-3 mb-3">
+                <div class="card" style="width: 16rem; border: 1px solid #ccc;">
+                    <img class="card-img-top" src="{{ i.poster.url }}" alt="Card image cap" style="height: 200px;">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: #333;">{{ i.title }}</h5>
+                        <p class="card-text" style="max-height: 80px; overflow: hidden; color: #666;">{{ i.desc }}</p>
+                        <a href="{% url 'Movieapp:details' i.id %}" class="btn btn-primary" style="background-color: #007bff; border-color: #007bff;">Details</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

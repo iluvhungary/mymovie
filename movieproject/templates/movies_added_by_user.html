@@ -1,0 +1,13 @@
+<h1>Movies Added by You</h1>
+    <ul>
+        {% for movie in user_movies %}
+            <li>
+               <h2><strong>Title:</strong><a href="{% url 'Movieapp:details' movie.id %}">{{ movie.title }}</a><br></h2>
+                <strong>Description:</strong> {{ movie.desc }} <br>
+                <strong>Release Date:</strong> {{ movie.release_date }} <br>
+                <!-- Add more details as needed -->
+            </li>
+        {% empty %}
+            <li>No movies added by you yet.</li>
+        {% endfor %}
+    </ul>

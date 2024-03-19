@@ -1,0 +1,13 @@
+<!-- top_imdb_rated_movies.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Top User Rated Movies</h1>
+  <ul>
+    {% for movie in top_rated_movies %}
+      <li>
+        <a href="{% url 'Movieapp:details' movie.id %}">{{ movie.title }}</a> - {{ movie.imdb_rating }}
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

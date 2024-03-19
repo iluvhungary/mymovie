@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Movie project</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    <meta name="description" content="{% block metadescription %} {% endblock %}">
+    <script src="https://kit.fontawesome.com/918de56c36.js" crossorigin="anonymous"></script>
+</head>
+
+<script>
+    $(document).ready(function() {
+        $('.dropdown-toggle').dropdown(); // Initialize Bootstrap dropdowns
+    });
+</script>
+
+
+
+<body style="background-color: #b3b3b3">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'Movieapp:index' %}">Movie Hub</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            {% if user.is_authenticated %}
+                <!-- Only show these links if the user is authenticated -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'Movieapp:sign_out' %}">Sign Out</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'Movieapp:my_account' %}">My Account</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'Movieapp:movies_added_by_user' %}">Movies Added by You</a>
+                </li>
+
+            {% else %}
+                <!-- Show these links if the user is not authenticated -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'Movieapp:sign_up' %}">Sign Up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'Movieapp:sign_in' %}">Sign In</a>
+                </li>
+            {% endif %}
+            <!-- Always show the Genre link -->
+<!--            <li class="nav-item dropdown">-->
+<!--        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--          Genre-->
+<!--        </a>-->
+<!--        <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+<!--          {% for genre in genres %}-->
+<!--          <a class="dropdown-item" href="{% url 'genre_detail' genre.id %}">{{ genre.name }}</a>-->
+<!--          {% endfor %}-->
+<!--        </div>-->
+<!--      </li>-->
+            <!-- More dropdown menu -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Language
+                </a>
+                <div class="dropdown-menu" aria-labelledby="languageDropdown">
+                    <a class="dropdown-item" href="{% url 'Movieapp:filter_by_language' %}?language=malayalam">Malayalam</a>
+                    <a class="dropdown-item" href="{% url 'Movieapp:filter_by_language' %}?language=hindi">Hindi</a>
+                    <a class="dropdown-item" href="{% url 'Movieapp:filter_by_language' %}?language=english">English</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{% url 'Movieapp:movies_by_year' 2024 %}">Movies Released in 2024</a>
+                    <a class="dropdown-item" href="{% url 'Movieapp:movies_by_year' 2023 %}">Movies Released in 2023</a>
+                    <a class="dropdown-item" href="{% url 'Movieapp:movies_by_year' 2022 %}">Movies Released in 2022</a>
+                    <a class="dropdown-item" href="{% url 'Movieapp:top_imdb_rated' %}">Top User Rated Movies</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'Movieapp:add_movie' %}">Add Movie</a>
+                    {% if user.is_authenticated %}
+                        <!-- Show logout link if user is authenticated -->
+                        <a class="dropdown-item" href="{% url 'Movieapp:sign_out' %}">Logout</a>
+                    {% endif %}
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<div class="container">
+    <div>
+        {% block content %}
+        {% block body %}
+        {% endblock %}
+        {% endblock %}
+    </div>
+
+</div>
+
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script>
+    $(document).ready(function() {
+        $('.dropdown-toggle').dropdown();
+    });
+</script>
+</body>
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,33 @@
+<!-- movies_listing.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Movies Listing</h1>
+
+<!--    &lt;!&ndash; Filter form &ndash;&gt;-->
+<!--    <form method="GET" action="{% url 'Movieapp:filter_by_language' %}">-->
+<!--        <label for="language">Filter by Language:</label>-->
+<!--        <select id="language" name="language">-->
+<!--            <option value="">All</option>-->
+<!--            <option value="malayalam">Malayalam</option>-->
+<!--            <option value="hindi">Hindi</option>-->
+<!--            <option value="english">English</option>-->
+<!--        </select>-->
+<!--        <button type="submit">Apply Filter</button>-->
+<!--    </form>-->
+
+    <!-- Display filtered movies -->
+<ul>
+    {% for movie in filtered_movies %}
+        <li>
+            <a href="{% url 'Movieapp:details' movie.id %}">{{ movie.title }}</a> - {{ movie.language }}
+        </li>
+    {% endfor %}
+</ul>
+
+<!--    <ul>-->
+<!--        {% for movie in filtered_movies %}-->
+<!--            <li>{{ movie.title }} - {{ movie.language }}</li>-->
+<!--        {% endfor %}-->
+<!--    </ul>-->
+{% endblock %}

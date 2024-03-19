@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Movies Released in {{ year }}</h1>
+  <ul>
+    {% for movie in movies %}
+      <li>
+        <a href="{% url 'Movieapp:details' movie.id %}">{{ movie.title }}</a> ({{ movie.release_date|date:"Y" }})
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

@@ -1,0 +1,24 @@
+<h1>Welcome, {{ user.username }}</h1>
+    <h2>User Information</h2>
+    <p>Email: {{ user.email }}</p>
+    <p>First Name: {{ user.first_name }}</p>
+    <p>Last Name: {{ user.last_name }}</p>
+
+<!--    <h1>Movies Added by You</h1>-->
+<!--    <ul>-->
+<!--        {% for movie in user_movies %}-->
+<!--            <li>-->
+<!--               <h2><strong>Title:</strong> {{ movie.title }} <br></h2>-->
+<!--                <strong>Description:</strong> {{ movie.desc }} <br>-->
+<!--                <strong>Release Date:</strong> {{ movie.release_date }} <br>-->
+<!--                &lt;!&ndash; Add more details as needed &ndash;&gt;-->
+<!--            </li>-->
+<!--        {% empty %}-->
+<!--            <li>No movies added by you yet.</li>-->
+<!--        {% endfor %}-->
+<!--    </ul>-->
+
+    <!-- Add more details as needed -->
+<!--    <a href="{% url 'Movieapp:add_movie' %}">Add Movie</a><br><br>-->
+
+    <a href="{% url 'Movieapp:profile_edit' %}">Edit Profile</a>

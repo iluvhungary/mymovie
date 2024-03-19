@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{ movie.poster.url }}" width="50%" height="auto" style="object-fit: cover; margin-right: 20px;">
+        </div>
+        <div class="col-md-6">
+            <h2>{{ movie.title }}</h2>
+            <hr>
+            <h5>{{ movie.desc }}</h5>
+            <br>
+            <h4>{{ movie.release_date }}</h4>
+            <br>
+            <h4>Actors: {{ movie.actors }}</h4>
+<!--            <h4>Category: {{ movie.category }}</h4>-->
+             <h4>Category: {{ movie.category }}</h4><br>
+            <h4>Rating: {{ movie.imdb_rating }}</h4>
+            <h4>YouTube Trailer: <a href="{{ movie.youtube_trailer_link}}">{{ movie.youtube_trailer_link }}</a></h4>
+            {% if user.is_authenticated and user == movie.creator %}
+            <a class="btn btn-warning" href="{% url 'Movieapp:update' movie.id %}">Update</a>
+            <a class="btn btn-danger" href="{% url 'Movieapp:delete' movie.id %}">Delete</a>
+            {% endif %}
+
+
+            <a class="btn btn-primary" href="{% url 'Movieapp:index' %}">Back to Home</a>
+
+            <h3>Add a Comment</h3>
+        <form method="post" action="{% url 'Movieapp:add_comment' movie.id %}">
+            {% csrf_token %}
+                <textarea name="comment" rows="3" cols="40"></textarea><br>
+                <button type="submit" class="btn btn-primary">Add Comment</button>
+        </form>
+            <!-- Display Comments -->
+            <h3>Comments</h3>
+                <ul>
+                    {% for comment in comments %}
+                    <li>{{ comment.content }}</li>
+                    {% endfor %}
+                </ul>
+
+
+
+
+
+            <!--        comment form-->
+<!--              <h3>Comments</h3>-->
+<!--            <form method="post" action="{% url 'Movieapp:add_comment' movie.id %}">-->
+<!--                {% csrf_token %}-->
+<!--                <textarea name="comment" rows="3" cols="40"></textarea><br>-->
+<!--                <a class="btn btn-warning" href="{% url 'Movieapp:details' movie.id %}">Add Comment</a>-->
+<!--&lt;!&ndash;                <button type="submit" class="btn btn-primary">Add Comment</button>&ndash;&gt;-->
+<!--            </form>-->
+
+<!--            &lt;!&ndash; Display Comments &ndash;&gt;-->
+<!--            <h3>Comments</h3>-->
+<!--            <ul>-->
+<!--                {% for comment in comments %}-->
+<!--                    <li>{{ comment.content }}</li>-->
+<!--                {% endfor %}-->
+<!--            </ul>-->
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
